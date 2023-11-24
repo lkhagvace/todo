@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/85c9ddbf83.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div id="taskAddBar">
-        <h1>Add Task</h1>
-        <input id="inputFirst" type="text">
-        <input id="inputSecond" type="text">
-        <select name="status" id="status">
-            <option value="ToDo">To Do</option>
-            <option value="InProgress">In Progress</option>
-            <option value="Stuck">Stuck</option>
-            <option value="Done">Done</option>
-        </select>
-        <select name="priority" id="priority">
-            <option value="1">Low</option>
-            <option value="2">Medium</option>
-            <option value="3">High</option>
-        </select>
-        <button id="coAddTaskBtn">Add task</button>
+      <h1>Add Task</h1>
+      <label for="title">Title:</label>
+      <input id="inputFirst" type="text" />
+      <label for="description">Description:</label>
+      <input id="inputSecond" type="text" />
+      <label for="status">Status:</label>
+      <select name="status" id="status">
+        <option value="ToDo">To Do</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Stuck">Stuck</option>
+        <option value="Done">Done</option>
+      </select>
+      <label for="priority">Priority:</label>
+      <select name="priority" id="priority">
+        <option id="1" value="Low">Low</option>
+        <option id="2" value="Medium">Medium</option>
+        <option id="3" value="High">High</option>
+      </select>
+      <button id="coAddTaskBtn">Add task</button>
     </div>
-   <div id="big-container">
-    <div id="container1" class="containers">
+    <div id="big-container">
+      <div id="container1" class="containers">
         <h3>To Do</h3>
-        <button class="addBtn">+ Add card</button>
-    </div>
-    <div id="container2" class="containers">
+        <button class="addBtn"><h4>+ Add Card</h4></button>
+      </div>
+      <div id="container2" class="containers">
         <h3>In Progress</h3>
-        <button class="addBtn">+ Add card</button>
-    </div>
-    <div id="container3" class="containers">
+        <button class="addBtn"><h4>+ Add Card</h4></button>
+      </div>
+      <div id="container3" class="containers">
         <h3>Stuck</h3>
-        <button class="addBtn">+ Add card</button>
-    </div>
-    <div id="container4" class="containers">
+        <button class="addBtn"><h4>+ Add Card</h4></button>
+      </div>
+      <div id="container4" class="containers">
         <h3>Done</h3>
-        <button class="addBtn">+ Add card</button>
+        <button class="addBtn"><h4>+ Add Card</h4></button>
+      </div>
     </div>
-   </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
