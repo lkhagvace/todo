@@ -3,11 +3,26 @@ let container1 = document.getElementById("container1");
 let container2 = document.getElementById("container2");
 let container3 = document.getElementById("container3");
 let container4 = document.getElementById("container4");
+let levelHigh1 = document.getElementById("levelHigh1");
+let levelHigh2 = document.getElementById("levelHigh2");
+let levelHigh3 = document.getElementById("levelHigh3");
+let levelHigh4 = document.getElementById("levelHigh4");
+let levelMedium1 = document.getElementById("levelMedium1");
+let levelMedium2 = document.getElementById("levelMedium2");
+let levelMedium3 = document.getElementById("levelMedium3");
+let levelMedium4 = document.getElementById("levelMedium4");
+let levelLow1 = document.getElementById("levelLow1");
+let levelLow2 = document.getElementById("levelLow2");
+let levelLow3 = document.getElementById("levelLow3");
+let levelLow4 = document.getElementById("levelLow4");
 let h3 = document.querySelectorAll("h3");
 let bigCon = document.getElementById("big-container");
 let value = document.getElementById("status");
-let valueOfRank = document.getElementById("priority")
+let priorityValue = document.getElementById("priority");
 var taskbar = document.getElementById("taskAddBar");
+let highs = document.querySelectorAll(".highs");
+let mediums = document.querySelectorAll(".mediums")
+let lows = document.querySelectorAll(".lows")
     let addBtn = document.querySelectorAll(".addBtn");
         addBtn.forEach(addBtn => {
         
@@ -30,7 +45,7 @@ var taskbar = document.getElementById("taskAddBar");
 
 
         let IsItDoneBtn = document.createElement("button");
-        IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: #000000;"></i>`
+        // IsItDoneBtn.innerHTML = <i class="fa-solid fa-check" style="color: #000000;"></i>
         IsItDoneBtn.classList.add("IsItDone");
         tasks.appendChild(IsItDoneBtn);
 
@@ -46,9 +61,11 @@ var taskbar = document.getElementById("taskAddBar");
 
 
         let deleteBtn = document.createElement("button");
-        deleteBtn.innerHTML = `<i class="fa-solid fa-minus" style="color: #000000;"></i>`;
+        deleteBtn.classList.add("deleteBtn")
+        // deleteBtn.innerHTML = <i class="fa-solid fa-minus" style="color: #000000;"></i>;
         let changeBtn = document.createElement("button");
-        changeBtn.innerHTML = `<i class="fa-solid fa-wrench" style="color: #000000;"></i>`
+        changeBtn.classList.add("changeBtn")
+        // changeBtn.innerHTML = <i class="fa-solid fa-wrench" style="color: #000000;"></i>
         deleteAndChange.appendChild(deleteBtn);
         deleteAndChange.appendChild(changeBtn);
 
@@ -65,30 +82,69 @@ var taskbar = document.getElementById("taskAddBar");
         description.innerText = Description.value;
         textTask.appendChild(description);
 
-
-        let rank = document.createElement("div");
-        rank.classList.add("rank");
-        textTask.appendChild(rank)
-        rank.innerText = valueOfRank.value;
+        if(priorityValue.value === "High"){
+            tasks.style.border = "1px solid red";
+        }
+        if(priorityValue.value === "Medium"){
+            tasks.style.border = "1px solid blue";
+        }
+        if(priorityValue.value === "Low"){
+            tasks.style.border = "1px solid purple";
+        }
 
 
         if (value.value === "ToDo"){
-            container1.appendChild(tasks)
+            if(priorityValue.value === "High"){
+                levelHigh1.appendChild(tasks);
+            }
+            if(priorityValue.value === "Medium"){
+                levelMedium1.appendChild(tasks);
+            }
+            if(priorityValue.value === "Low"){
+                levelLow1.appendChild(tasks);
+            }
         }
         if (value.value === "InProgress"){
-            container2.appendChild(tasks)
+            if(priorityValue.value === "High"){
+                levelHigh2.appendChild(tasks);
+            }
+            if(priorityValue.value === "Medium"){
+                levelMedium2.appendChild(tasks);
+            }
+            if(priorityValue.value === "Low"){
+                levelLow2.appendChild(tasks);
+            }
         }
         if (value.value === "Stuck"){
-            container3.appendChild(tasks)
+            if(priorityValue.value === "High"){
+                levelHigh3.appendChild(tasks);
+            }
+            if(priorityValue.value === "Medium"){
+                levelMedium3.appendChild(tasks);
+            }
+            if(priorityValue.value === "Low"){
+                levelLow3.appendChild(tasks);
+            }
         }
         if (value.value === "Done"){
-            container4.appendChild(tasks)
+            if(priorityValue.value === "High"){
+                levelHigh4.appendChild(tasks);
+            }
+            if(priorityValue.value === "Medium"){
+                levelMedium4.appendChild(tasks);
+            }
+            if(priorityValue.value === "Low"){
+                levelLow4.appendChild(tasks);
+            }
         }
+        var dlt = document.querySelectorAll(".deleteBtn")
+
     
 
         let task = document.querySelectorAll(".task");
         task.forEach(task => {
             task.addEventListener("dragstart", () => {
+                console.log("dragstart")
                 task.classList.add("dragging");
             });
             task.addEventListener("dragend", () => {
@@ -102,17 +158,16 @@ var taskbar = document.getElementById("taskAddBar");
 
             IsItDoneBtn.addEventListener("click", GoToDone)
         })
-        containers.forEach(containers => {
-            containers.addEventListener("dragover", e => {
+        console.log(highs)
+        highs.forEach(highs => {
+            highs.addEventListener("dragover", e => {
                 e.preventDefault();
+                console.log("dragover")
                 let draggable = document.querySelector(".dragging");
-                containers.appendChild(draggable)
+                if(priorityValue.value === "High"){
+                    highs.appendChild(draggable)
+                }
             })
-            let deleteTask = () => {
-                task.forEach(task => {
-                    containers.removeChild(task.lastChild)
-                })
-            }
 
 
 
@@ -127,7 +182,6 @@ var taskbar = document.getElementById("taskAddBar");
 
             
             changeBtn.addEventListener("click", changingRef)
-            deleteBtn.addEventListener("click", deleteTask);
         })
         NameOfInput.value = "";
         Description.value = ""
