@@ -11,6 +11,28 @@
     ></script>
   </head>
   <body>
+    <div id="editing_board">
+      <button id="cancel">cancel</button>
+      <label for="title">Title:</label>
+      <input id="CoInputFirst" type="text" />
+      <label for="description">Description:</label>
+      <input id="CoInputSecond" type="text" />
+      <label for="status">Status:</label>
+      <select name="CoStatus" id="CoStatus">
+        <option value="ToDo">To Do</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Stuck">Stuck</option>
+        <option value="Done">Done</option>
+      </select>
+      <label for="priority">Priority:</label>
+      <select name="priority" id="CoPriority">
+        <option id="1" value="Low">Low</option>
+        <option id="2" value="Medium">Medium</option>
+        <option id="3" value="High">High</option>
+      </select>
+      <button id="editingBtn">Edit</button>
+    </div>
+
     <div id="taskAddBar">
       <h1>Add Task</h1>
       <label for="title">Title:</label>
@@ -34,31 +56,31 @@
     </div>
     <div id="big-container">
       <div id="container1" class="containers">
-        <h3>To Do</h3>
-        <div class="highs" id="levelHigh1"></div>
-        <div class="mediums" id="levelMedium1"></div>
-        <div class="lows" id="levelLow1"></div>
+        <h3>To Do <span id="firstLength"></span></h3>
+        <div class="coContainer" id="levelHigh1"></div>
+        <div class="coContainer" id="levelMedium1"></div>
+        <div class="coContainer" id="levelLow1"></div>
         <button class="addBtn"><h4>+ Add Card</h4></button>
       </div>
       <div id="container2" class="containers">
-        <h3>In Progress</h3>
-        <div class="highs" id="levelHigh2"></div>
-        <div class="mediums" id="levelMedium2"></div>
-        <div class="lows" id="levelLow2"></div>
+        <h3>In Progress <span id="secondLength"></span></h3>
+        <div class="coContainer" id="levelHigh2"></div>
+        <div class="coContainer" id="levelMedium2"></div>
+        <div class="coContainer" id="levelLow2"></div>
         <button class="addBtn"><h4>+ Add Card</h4></button>
       </div>
       <div id="container3" class="containers">
-        <h3>Stuck</h3>
-        <div class="highs" id="levelHigh3"></div>
-        <div class="mediums" id="levelMedium3"></div>
-        <div class="lows" id="levelLow3"></div>
+        <h3>Stuck <span id="thirdLength"></span></h3>
+        <div class="coContainer" id="levelHigh3"></div>
+        <div class="coContainer" id="levelMedium3"></div>
+        <div class="coContainer" id="levelLow3"></div>
         <button class="addBtn"><h4>+ Add Card</h4></button>
       </div>
       <div id="container4" class="containers">
-        <h3>Done</h3>
-        <div class="highs" id="levelHigh4"></div>
-        <div class="mediums" id="levelmedium4"></div>
-        <div class="lows" id="levelLow4"></div>
+        <h3>Done <span id="thirdLength"></span></h3>
+        <div class="coContainer" id="levelHigh4"></div>
+        <div class="coContainer" id="levelmedium4"></div>
+        <div class="coContainer" id="levelLow4"></div>
         <button class="addBtn"><h4>+ Add Card</h4></button>
       </div>
     </div>
