@@ -41,7 +41,8 @@ let bigCon = document.getElementById("big-container");
 
 
 let value = document.getElementById("status");
-let coValue = document.getElementById("CoStatus")
+let coStatusValue = document.getElementById("CoStatus");
+coStatusValue.value = value.value
 
 
 let priorityValue = document.getElementById("priority");
@@ -52,12 +53,15 @@ var taskbar = document.getElementById("taskAddBar");
 
 
 let editingBoard = document.getElementById("editing_board");
+let editingBtn = document.getElementById("editingBtn")
 let cancel = document.getElementById("cancel")
 
 
 let coContainers = document.querySelectorAll(".coContainer")
 
 let addBtn = document.querySelectorAll(".addBtn");
+
+let num = levelLow1.childElementCount;
 
 
 // adding button-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,7 +103,7 @@ let addBtn = document.querySelectorAll(".addBtn");
         let changeBtn = document.createElement("button");
         let deleteBtn = document.createElement("button");
         deleteBtn.classList.add("deleteBtn")
-        deleteBtn.innerHTML = `<i class="fa-solid fa-minus" style="color: #000000;"></i>`;
+        deleteBtn.innerHTML = `<i class="fa-solid fa-minus" style="color: #000000;"></i>`
         changeBtn.classList.add("changeBtn")
         changeBtn.innerHTML = `<i class="fa-solid fa-wrench" style="color: #000000;"></i>`;
         deleteAndChange.appendChild(deleteBtn);
@@ -133,19 +137,7 @@ let addBtn = document.querySelectorAll(".addBtn");
         let rank = document.createElement("div");
         rank.innerText = priorityValue.value;
         rank.classList.add("rank")
-        textTask.appendChild(rank)
-
-        
-
-        if(priorityValue.value === "High"){
-            tasks.style.border = "3px dotted red";
-        }
-        if(priorityValue.value === "Medium"){
-            tasks.style.border = "3px dotted blue";
-        }
-        if(priorityValue.value === "Low"){
-            tasks.style.border = "3px dotted purple";
-        }
+        textTask.appendChild(rank);
 
 
         if (value.value === "ToDo"){
@@ -199,7 +191,7 @@ let addBtn = document.querySelectorAll(".addBtn");
         task.forEach(task => {
             task.addEventListener("dragstart", () => {
                 task.classList.add("dragging");
-            });
+            })
             task.addEventListener("dragend", () => {
                 task.classList.remove("dragging")
             })
@@ -278,41 +270,128 @@ let addBtn = document.querySelectorAll(".addBtn");
             })
 
 
-            const titleInput = document.querySelector(".title")
-            const descriptionInput = document.querySelector(".description")
-        coContainers.forEach(coContainers => {
+
+            coContainers.forEach(coContainers => {
             let deletingRef = () => {
                 coContainers.removeChild(tasks)
             }
             deleteBtn.addEventListener("click", deletingRef)
             })
-            let nameValue = NameOfInput.value;
-            let descriptionValue = Description.value;
-            let CoInputFirst = document.getElementById("CoInputFirst");
+            
+
+            let coInputFirst = document.getElementById("CoInputFirst");
             let CoInputSecond = document.getElementById("CoInputSecond");
-            let editingBtn = document.getElementById("editingBtn");
             changeBtn.onclick = () => {
-                coValue.value = value.value;
-                CoPriorityValue.value = priorityValue.value;
-                editingBoard.style.display = "flex"
+
+                editingBoard.style.display = "flex";
                 editingBoard.style.flexDirection = "column";
-                CoInputFirst.value = nameValue;
-                CoInputSecond.value = descriptionValue;
-                console.log(coValue.value)
-                editingBtn.onclick = () => {
-                    titleInput.textContent = CoInputFirst.value;
-                    descriptionInput.textContent = CoInputSecond.value;
-                    value.value = coValue.value;
-                    priorityValue.value = CoPriorityValue.value
+                
+                coInputFirst.value = nameOfTask.innerText;
+                CoInputSecond.value = description.innerText;
+                CoPriorityValue.value = rank.innerText;
+                
+                
+                
+
+
+
+
+                editingBtn.onclick = () =>{
+                    nameOfTask.innerText = coInputFirst.value;
+                    description.innerText = CoInputSecond.value;
+                    rank.innerText = CoPriorityValue.value;
+                    let d = coStatusValue.value;
+                    
+
+
+
+
+                    priorityValue.value = rank.innerText;
+                    value.value = d;
+                    
+                    
+
+                    
+                    
+
+                    if(priorityValue.value === "High"){
+                        tasks.style.border = "3px dotted red";
+                    }
+                    if(priorityValue.value === "Medium"){
+                        tasks.style.border = "3px dotted blue";
+                    }
+                    if(priorityValue.value === "Low"){
+                        tasks.style.border = "3px dotted purple";
+                    }
+
+
+                    if (value.value === "ToDo"){
+                        if(priorityValue.value === "High"){
+                            levelHigh1.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Medium"){
+                            levelMedium1.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Low"){
+                            levelLow1.appendChild(tasks);
+                        }
+                    }
+                    if (value.value === "InProgress"){
+                        if(priorityValue.value === "High"){
+                            levelHigh2.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Medium"){
+                            levelMedium2.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Low"){
+                            levelLow2.appendChild(tasks);
+                        }
+                    }
+                    if (value.value === "Stuck"){
+                        if(priorityValue.value === "High"){
+                            levelHigh3.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Medium"){
+                            levelMedium3.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Low"){
+                            levelLow3.appendChild(tasks);
+                        }
+                    }
+                    if (value.value === "Done"){
+                        if(priorityValue.value === "High"){
+                            levelHigh4.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Medium"){
+                            levelMedium4.appendChild(tasks);
+                        }
+                        if(priorityValue.value === "Low"){
+                            levelLow4.appendChild(tasks);
+                        }
+                    }
                     editingBoard.style.display = "none";
+                }
+                cancel.onclick = () => {
+                    editingBoard.style.display = "none"
                 }
             }
 
 
 
+
+      
         NameOfInput.value = "";
         Description.value = "";
+        if(priorityValue.value === "High"){
+            tasks.style.border = "3px dotted red";
+        }
+        if(priorityValue.value === "Medium"){
+            tasks.style.border = "3px dotted blue";
+        }
+        if(priorityValue.value === "Low"){
+            tasks.style.border = "3px dotted purple";
+        }
+        
     }
     coTaskBar.addEventListener("click", coAddingBtn);
-    // let num = levelLow1.childElementCount;
-    // console.log(num)
+    console.log(num)
