@@ -1,4 +1,11 @@
 let containers = document.querySelectorAll(".containers")
+let body = document.body
+
+let firstBtn = document.getElementById("firstBtn");
+let secondBtn = document.getElementById("secondBtn")
+let thirdBtn = document.getElementById("thirdBtn")
+let forthBtn = document.getElementById("forthBtn")
+
 
 
 let container1 = document.getElementById("container1");
@@ -31,7 +38,6 @@ let levelLow3 = document.getElementById("levelLow3");
 let levelLow4 = document.getElementById("levelLow4");
 
 
-let number = document.getElementsByTagName("span")
 
 
 let h3 = document.querySelectorAll("h3");
@@ -42,7 +48,7 @@ let bigCon = document.getElementById("big-container");
 
 let value = document.getElementById("status");
 let coStatusValue = document.getElementById("CoStatus");
-coStatusValue.value = value.value
+coStatusValue.value = value.value;
 
 
 let priorityValue = document.getElementById("priority");
@@ -60,8 +66,13 @@ let cancel = document.getElementById("cancel")
 let coContainers = document.querySelectorAll(".coContainer")
 
 let addBtn = document.querySelectorAll(".addBtn");
+let cancel1 = document.getElementById("cancel1")
 
-let num = levelLow1.childElementCount;
+
+let sum1 = 0;
+let sum2 = 0;
+let sum3 = 0;
+let sum4 = 0;
 
 
 // adding button-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -69,14 +80,33 @@ let num = levelLow1.childElementCount;
         let addingBtn = () => {
             taskbar.style.display = "flex";
             taskbar.style.flexDirection = "column";
-            taskbar.style.justifyContent = "space-between";
+            taskbar.style.justifyContent = "space-between"; 
         }
         addBtn.addEventListener("click", addingBtn);
     })
+    firstBtn.onclick = () => {
+        value.value = "ToDo"
+    }
+    secondBtn.onclick = () => {
+        value.value = "InProgress"
+    }
+    thirdBtn.onclick = () => {
+        value.value = "Stuck"
+    }
+    forthBtn.onclick = () => {
+        value.value = "Done"
+    }
+
+    cancel1.onclick = () => {
+        taskbar.style.display = "none"
+    }
+
 
 
 // adding tasks------------------------------------------------------------------------------------------------------------------------------------------------------
     let coTaskBar = document.getElementById("coAddTaskBtn");
+
+
     let coAddingBtn = () => {
         taskbar.style.display = "none";
 
@@ -86,7 +116,7 @@ let num = levelLow1.childElementCount;
         tasks.draggable = "true";
 
         let IsItDoneBtn = document.createElement("button");
-        IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: #000000;"></i>`
+        IsItDoneBtn.innerHTML =` <i class="fa-solid fa-check" style="color: #000000;"></i>`
         IsItDoneBtn.classList.add("IsItDone");
         tasks.appendChild(IsItDoneBtn);
 
@@ -103,9 +133,9 @@ let num = levelLow1.childElementCount;
         let changeBtn = document.createElement("button");
         let deleteBtn = document.createElement("button");
         deleteBtn.classList.add("deleteBtn")
-        deleteBtn.innerHTML = `<i class="fa-solid fa-minus" style="color: #000000;"></i>`
+        deleteBtn.innerHTML = <i class="fa-solid fa-minus" style="color: #000000;"></i>
         changeBtn.classList.add("changeBtn")
-        changeBtn.innerHTML = `<i class="fa-solid fa-wrench" style="color: #000000;"></i>`;
+        changeBtn.innerHTML = <i class="fa-solid fa-wrench" style="color: #000000;"></i>;
         deleteAndChange.appendChild(deleteBtn);
         deleteAndChange.appendChild(changeBtn);
 
@@ -184,6 +214,8 @@ let num = levelLow1.childElementCount;
                 levelLow4.appendChild(tasks);
             }
         }
+        
+        
 
     
 
@@ -226,7 +258,11 @@ let num = levelLow1.childElementCount;
                 if(priorityValue.value === "Low"){
                     levelLow1.appendChild(draggable)
                 }
+                value.value = "ToDo";
+                coStatusValue.value = value.value;
             })
+
+
             container2.addEventListener("dragover", e => {
                 e.preventDefault();
                 let draggable = document.querySelector(".dragging");
@@ -239,7 +275,11 @@ let num = levelLow1.childElementCount;
                 if(priorityValue.value === "Low"){
                     levelLow2.appendChild(draggable)
                 }
+                value.value = "InProgress"
+                coStatusValue.value = value.value;
             })
+
+
 
             container3.addEventListener("dragover", e => {
                 e.preventDefault();
@@ -253,6 +293,10 @@ let num = levelLow1.childElementCount;
                 if(priorityValue.value === "Low"){
                     levelLow3.appendChild(draggable)
                 }
+                value.value = "Stuck"
+                coStatusValue.value = value.value;
+
+
             })
 
             container4.addEventListener("dragover", e => {
@@ -267,6 +311,8 @@ let num = levelLow1.childElementCount;
                 if(priorityValue.value === "Low"){
                     levelLow4.appendChild(draggable)
                 }
+                value.value = "Done"
+                coStatusValue.value = value.value;
             })
 
 
@@ -289,7 +335,7 @@ let num = levelLow1.childElementCount;
                 coInputFirst.value = nameOfTask.innerText;
                 CoInputSecond.value = description.innerText;
                 CoPriorityValue.value = rank.innerText;
-                
+                coStatusValue.value = value.value
                 
                 
 
@@ -300,15 +346,13 @@ let num = levelLow1.childElementCount;
                     nameOfTask.innerText = coInputFirst.value;
                     description.innerText = CoInputSecond.value;
                     rank.innerText = CoPriorityValue.value;
-                    let d = coStatusValue.value;
+                    value.value = coStatusValue.value
                     
 
 
 
 
                     priorityValue.value = rank.innerText;
-                    value.value = d;
-                    
                     
 
                     
@@ -391,7 +435,10 @@ let num = levelLow1.childElementCount;
         if(priorityValue.value === "Low"){
             tasks.style.border = "3px dotted purple";
         }
-        
+        sum1 = coContainers[0].childElementCount + coContainers[1].childElementCount + coContainers[2].childElementCount;
+        sum2 = coContainers[3].childElementCount + coContainers[4].childElementCount + coContainers[5].childElementCount;
+        sum3 = coContainers[6].childElementCount + coContainers[7].childElementCount + coContainers[8].childElementCount;
+        sum4 = coContainers[9].childElementCount + coContainers[10].childElementCount + coContainers[11].childElementCount;
+        console.log(sum1, sum2, sum3, sum4)
     }
     coTaskBar.addEventListener("click", coAddingBtn);
-    console.log(num)
