@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css" />
+    <script
+      src="https://kit.fontawesome.com/85c9ddbf83.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="clone"></div>
+    <div id="editing-board">
+      <button id="cancel">
+        <i class="fa-solid fa-minus" style="color: #000000"></i>
+      </button>
+      <label for="title">Title:</label>
+      <textarea name="" id="co-first-textArea" cols="" rows=""></textarea>
+      <label for="description">Description:</label>
+      <textarea name="" id="co-second-textArea" cols="30" rows="10"></textarea>
+      <label for="status">Status:</label>
+      <select id="co-status">
+        <option value="ToDo">ToDo</option>
+        <option value="InProgress">InProgress</option>
+        <option value="Stuck">Stuck</option>
+        <option value="Done">Done</option>
+      </select>
+      <label for="priority">Priority:</label>
+      <select id="co-priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+      <button id="editingBtn">Edit</button>
+    </div>
+
+    <div id="task-add-bar">
+      <button id="cancel-01">
+        <i class="fa-solid fa-minus" style="color: #000000"></i>
+      </button>
+      <h1>Add Task</h1>
+      <label for="title">Title:</label>
+      <textarea name="" id="first-textArea" cols="" rows=""></textarea>
+      <label for="description">Description:</label>
+      <textarea name="" id="second-textArea" cols="" rows=""></textarea>
+      <label for="status">Status:</label>
+      <select id="status">
+        <option value="ToDo">To Do</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Stuck">Stuck</option>
+        <option value="Done">Done</option>
+      </select>
+      <label for="priority">Priority:</label>
+      <select name="priority" id="priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+      <button id="push-task-btn">Add task</button>
+    </div>
+    <div id="big-container">
+      <div id="container1" class="containers">
+        <h3>To Do <span id="firstLength"></span></h3>
+        <button id="first-ref" class="add-ref"><h4>+ Add Card</h4></button>
+      </div>
+      <div id="container2" class="containers">
+        <h3>In Progress <span id="secondLength"></span></h3>
+        <button id="second-ref" class="add-ref"><h4>+ Add Card</h4></button>
+      </div>
+      <div id="container3" class="containers">
+        <h3>Stuck <span id="thirdLength"></span></h3>
+        <button id="third-ref" class="add-ref"><h4>+ Add Card</h4></button>
+      </div>
+      <div id="container4" class="containers">
+        <h3>Done <span id="forthLength"></span></h3>
+        <button id="forth-ref" class="add-ref"><h4>+ Add Card</h4></button>
+      </div>
+    </div>
+    <script src="script1.js"></script>
+  </body>
+</html>

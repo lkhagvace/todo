@@ -1,0 +1,1 @@
+const state = {  tasks: [],};function render() {  console.log(state.tasks);  const taskList = document.getElementById('task-list');  taskList.innerHTML = '';

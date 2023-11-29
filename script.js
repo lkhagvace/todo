@@ -1,5 +1,6 @@
 let containers = document.querySelectorAll(".containers")
 let body = document.body
+let clone = document.getElementById("clone")
 
 let firstBtn = document.getElementById("firstBtn");
 let secondBtn = document.getElementById("secondBtn")
@@ -23,6 +24,7 @@ let levelHigh4 = document.getElementById("levelHigh4");
 let firstLength = document.getElementById("firstLength");
 let secondLength = document.getElementById("secondLength");
 let thirdLength = document.getElementById("thirdLength");
+let forthLength = document.getElementById("forthLength")
 
 
 
@@ -81,9 +83,16 @@ let sum4 = 0;
             taskbar.style.display = "flex";
             taskbar.style.flexDirection = "column";
             taskbar.style.justifyContent = "space-between"; 
+            clone.style.display = "block"
         }
         addBtn.addEventListener("click", addingBtn);
     })
+    clone.onclick = () => {
+        taskbar.style.display = "none";
+        clone.style.display = "none";
+        editingBoard.style.display = "none"
+        
+    }
     firstBtn.onclick = () => {
         value.value = "ToDo"
     }
@@ -99,6 +108,7 @@ let sum4 = 0;
 
     cancel1.onclick = () => {
         taskbar.style.display = "none"
+        clone.style.display = "none"
     }
 
 
@@ -108,15 +118,16 @@ let sum4 = 0;
 
 
     let coAddingBtn = () => {
-        taskbar.style.display = "none";
 
+        taskbar.style.display = "none";
+        clone.style.display = "none"
 
         let tasks = document.createElement("div");
         tasks.classList.add("task")
         tasks.draggable = "true";
 
         let IsItDoneBtn = document.createElement("button");
-        IsItDoneBtn.innerHTML =` <i class="fa-solid fa-check" style="color: #000000;"></i>`
+        IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: #000000;"></i>`
         IsItDoneBtn.classList.add("IsItDone");
         tasks.appendChild(IsItDoneBtn);
 
@@ -133,9 +144,9 @@ let sum4 = 0;
         let changeBtn = document.createElement("button");
         let deleteBtn = document.createElement("button");
         deleteBtn.classList.add("deleteBtn")
-        deleteBtn.innerHTML = <i class="fa-solid fa-minus" style="color: #000000;"></i>
+        deleteBtn.innerHTML = `<i class="fa-solid fa-minus" style="color: #000000;"></i>`
         changeBtn.classList.add("changeBtn")
-        changeBtn.innerHTML = <i class="fa-solid fa-wrench" style="color: #000000;"></i>;
+        changeBtn.innerHTML = `<i class="fa-solid fa-wrench" style="color: #000000;"></i>`
         deleteAndChange.appendChild(deleteBtn);
         deleteAndChange.appendChild(changeBtn);
 
@@ -238,10 +249,13 @@ let sum4 = 0;
                 if(priorityValue.value === "Low"){
                     levelLow4.appendChild(tasks)
                 }
+                IsItDoneBtn.style.backgroundColor = "black";
+                IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: white;"></i>`;
+                countFunction()
             }
 
 
-            IsItDoneBtn.addEventListener("click", GoToDone)
+            IsItDoneBtn.addEventListener("click", GoToDone);
         })
             
         
@@ -249,6 +263,8 @@ let sum4 = 0;
             container1.addEventListener("dragover", e => {
                 e.preventDefault();
                 let draggable = document.querySelector(".dragging");
+                IsItDoneBtn.style.backgroundColor = "white";
+                IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: black;"></i>`;
                 if(priorityValue.value === "High"){
                     levelHigh1.appendChild(draggable)
                 }
@@ -260,12 +276,15 @@ let sum4 = 0;
                 }
                 value.value = "ToDo";
                 coStatusValue.value = value.value;
+                countFunction()
             })
 
 
             container2.addEventListener("dragover", e => {
                 e.preventDefault();
                 let draggable = document.querySelector(".dragging");
+                IsItDoneBtn.style.backgroundColor = "white";
+                IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: black;"></i>`;
                 if(priorityValue.value === "High"){
                     levelHigh2.appendChild(draggable)
                 }
@@ -277,6 +296,7 @@ let sum4 = 0;
                 }
                 value.value = "InProgress"
                 coStatusValue.value = value.value;
+                countFunction()
             })
 
 
@@ -284,6 +304,8 @@ let sum4 = 0;
             container3.addEventListener("dragover", e => {
                 e.preventDefault();
                 let draggable = document.querySelector(".dragging");
+                IsItDoneBtn.style.backgroundColor = "white";
+                IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: black;"></i>`;
                 if(priorityValue.value === "High"){
                     levelHigh3.appendChild(draggable)
                 }
@@ -295,6 +317,7 @@ let sum4 = 0;
                 }
                 value.value = "Stuck"
                 coStatusValue.value = value.value;
+                countFunction()
 
 
             })
@@ -302,6 +325,8 @@ let sum4 = 0;
             container4.addEventListener("dragover", e => {
                 e.preventDefault();
                 let draggable = document.querySelector(".dragging");
+                IsItDoneBtn.style.backgroundColor = "black";
+                IsItDoneBtn.innerHTML = `<i class="fa-solid fa-check" style="color: white;"></i>`;
                 if(priorityValue.value === "High"){
                     levelHigh4.appendChild(draggable)
                 }
@@ -313,13 +338,15 @@ let sum4 = 0;
                 }
                 value.value = "Done"
                 coStatusValue.value = value.value;
+                countFunction()
             })
 
 
 
             coContainers.forEach(coContainers => {
             let deletingRef = () => {
-                coContainers.removeChild(tasks)
+                coContainers.removeChild(tasks);
+                countFunction()
             }
             deleteBtn.addEventListener("click", deletingRef)
             })
@@ -328,6 +355,7 @@ let sum4 = 0;
             let coInputFirst = document.getElementById("CoInputFirst");
             let CoInputSecond = document.getElementById("CoInputSecond");
             changeBtn.onclick = () => {
+                clone.style.display = "block"
 
                 editingBoard.style.display = "flex";
                 editingBoard.style.flexDirection = "column";
@@ -343,6 +371,7 @@ let sum4 = 0;
 
 
                 editingBtn.onclick = () =>{
+                    clone.style.display = "none"
                     nameOfTask.innerText = coInputFirst.value;
                     description.innerText = CoInputSecond.value;
                     rank.innerText = CoPriorityValue.value;
@@ -414,9 +443,11 @@ let sum4 = 0;
                         }
                     }
                     editingBoard.style.display = "none";
+                    countFunction()
                 }
                 cancel.onclick = () => {
-                    editingBoard.style.display = "none"
+                    editingBoard.style.display = "none";
+                    clone.style.display = "none"
                 }
             }
 
@@ -435,10 +466,18 @@ let sum4 = 0;
         if(priorityValue.value === "Low"){
             tasks.style.border = "3px dotted purple";
         }
-        sum1 = coContainers[0].childElementCount + coContainers[1].childElementCount + coContainers[2].childElementCount;
-        sum2 = coContainers[3].childElementCount + coContainers[4].childElementCount + coContainers[5].childElementCount;
-        sum3 = coContainers[6].childElementCount + coContainers[7].childElementCount + coContainers[8].childElementCount;
-        sum4 = coContainers[9].childElementCount + coContainers[10].childElementCount + coContainers[11].childElementCount;
-        console.log(sum1, sum2, sum3, sum4)
+        countFunction()
     }
     coTaskBar.addEventListener("click", coAddingBtn);
+
+    let countFunction = () => {
+        sum1 = levelHigh1.childElementCount + levelMedium1.childElementCount + levelLow1.childElementCount;
+        sum2 = levelHigh2.childElementCount + levelMedium2.childElementCount + levelLow2.childElementCount;
+        sum3 = levelHigh3.childElementCount + levelMedium3.childElementCount + levelLow3.childElementCount;
+        sum4 = levelHigh4.childElementCount + levelMedium4.childElementCount + levelLow4.childElementCount;
+
+        firstLength.innerText = sum1;
+        secondLength.innerText = sum2;
+        thirdLength.innerText = sum3;
+        forthLength.innerText = sum4;
+    }
