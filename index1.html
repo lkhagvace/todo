@@ -29,9 +29,9 @@
       </select>
       <label for="priority">Priority:</label>
       <select id="co-priority">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
       </select>
       <button id="editingBtn">Edit</button>
     </div>
@@ -54,27 +54,31 @@
       </select>
       <label for="priority">Priority:</label>
       <select name="priority" id="priority">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
       </select>
       <button id="push-task-btn">Add task</button>
     </div>
     <div id="big-container">
       <div id="container1" class="containers">
         <h3>To Do <span id="firstLength"></span></h3>
+        <div id="todo-list"></div>
         <button id="first-ref" class="add-ref"><h4>+ Add Card</h4></button>
       </div>
       <div id="container2" class="containers">
         <h3>In Progress <span id="secondLength"></span></h3>
+        <div id="inprogress-list"></div>
         <button id="second-ref" class="add-ref"><h4>+ Add Card</h4></button>
       </div>
       <div id="container3" class="containers">
         <h3>Stuck <span id="thirdLength"></span></h3>
+        <div id="stuck-list"></div>
         <button id="third-ref" class="add-ref"><h4>+ Add Card</h4></button>
       </div>
       <div id="container4" class="containers">
         <h3>Done <span id="forthLength"></span></h3>
+        <div id="done-list"></div>
         <button id="forth-ref" class="add-ref"><h4>+ Add Card</h4></button>
       </div>
     </div>
