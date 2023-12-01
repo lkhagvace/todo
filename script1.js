@@ -11,55 +11,25 @@ let todoList = document.getElementById("todo-list");
 let inprogressList = document.getElementById("inprogress-list");
 let stuckList = document.getElementById("stuck-list");
 let doneList = document.getElementById("done-list");
+let firstContainer = document.getElementById("container1");
+let secondContainer = document.getElementById("container2");
+let thirdContainer = document.getElementById("container3");
+let forthContainer = document.getElementById("container4");
+let firstLength = document.getElementById("firstLength");
+let secondLength = document.getElementById("secondLength");
+let thirdLength = document.getElementById("thirdLength");
+let forthLength = document.getElementById("forthLength")
 let rankNum;
-let rankNumArr = [];
 
 let state = {
-    TodoTasks: [],
-    InProgressTaks: [],
-    StuckTasks: [],
-    DoneTasks: []
+    tasks: []
 }
 
-let sorting = () => {
-    rankNum = Number(priorityFirst.value);
-    rankNumArr.push(rankNum)
-    rankNumArr.sort(function(a, b){return b.priority - a.priority})
-}
-
-let refreshingArray = () => {
-    if (statusFirst.value === "ToDo") {
-        state.TodoTasks.push(
-            {title: firstTextArea.value},
-            {description: secondTextArea.value},
-            {address: statusFirst.value},
-            {rank: priorityFirst.value}
-            )
-    }
-    if (statusFirst.value === "InProgress") {
-        state.InProgressTaks.push(
-            {title: firstTextArea.value},
-            {description: secondTextArea.value},
-            {address: statusFirst.value},
-            {rank: priorityFirst.value}
-            )
-    }
-    if (statusFirst.value === "Stuck") {
-        state.StuckTasks.push(
-            {title: firstTextArea.value},
-            {description: secondTextArea.value},
-            {address: statusFirst.value},
-            {rank: priorityFirst.value}
-            )
-    }
-    if (statusFirst.value === "Done") {
-        state.DoneTasks.push(
-            {title: firstTextArea.value},
-            {description: secondTextArea.value},
-            {address: statusFirst.value},
-            {rank: priorityFirst.value}
-            )
-    }
+let counting = () => {
+    firstLength.innerText = todoList.childElementCount;
+    secondLength.innerText = inprogressList.childElementCount;
+    thirdLength.innerText = stuckList.childElementCount;
+    forthLength.innerText = doneList.childElementCount;
 }
 
 let render = () => {
@@ -68,7 +38,6 @@ let render = () => {
     let deleteBtn = document.createElement("button");
     let task = document.createElement("div");
     task.classList.add("task");
-    let taskClass = document.querySelectorAll(".task");
     title.innerText = firstTextArea.value;
     description.innerText = secondTextArea.value;
     deleteBtn.innerHTML = `<i class="fa-solid fa-minus" style="color: #000000;"></i>`
@@ -79,15 +48,25 @@ let render = () => {
     if (statusFirst.value === "InProgress") inprogressList.appendChild(task);
     if (statusFirst.value === "Stuck") stuckList.appendChild(task);
     if (statusFirst.value === "Done") doneList.appendChild(task);
-    sorting();
-    // deleteBtn.onclick = () => {
-    //         if (statusFirst.value === "ToDo"){
-    //             todoList.removeChild(task);
-    //         }
-    //         if (statusFirst.value === "InProgress") inprogressList.removeChild(task);
-    //         if (statusFirst.value === "Stuck") stuckList.removeChild(task);
-    //         if (statusFirst.value === "Done") doneList.removeChild(task);
-    // }
+    refreshingArray()
+    counting();
+}
+
+let refreshingArray = () => {
+    state.tasks.push(
+        {title: firstTextArea.value,
+        description: secondTextArea.value,
+        address: statusFirst.value,
+        rank: priorityFirst.value
+        }
+        )
+        const sorted = state.tasks.sort((a, b) => {
+            return Number(b.rank) - Number(a.rank)
+        })
+        console.log(sorted);
+
+        
+
 }
 
 addTaskRefs.forEach(addTaskRefs => {
@@ -108,9 +87,6 @@ addTaskRefs.forEach(addTaskRefs => {
 let pushingTasks = () => {
     render();
     refreshingArray();
-    console.log(rankNumArr);
     taskAddBar.style.display = "none";
 }
-
-
 pushTaskRef.addEventListener("click", pushingTasks)

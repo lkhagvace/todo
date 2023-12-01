@@ -26,3 +26,6 @@ button{
     width: fit-content;
     height: fit-content;
 }
+.task{
+    border: 1px solid black;
+}

@@ -1,0 +1,10 @@
+#adding-task{
+    display: none;
+    flex-direction: column;
+    width: 40vw;
+    height: 100px;
+}
+.task{
+    border: 1px solid black;
+    width: 10vw;
+}
